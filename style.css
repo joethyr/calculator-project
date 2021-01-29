@@ -1,0 +1,77 @@
+* {
+  background-color: #437c90;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .calc__container {
+    width: 400px;
+    height: 460px;
+    margin: auto;
+  }
+}
+
+h1 {
+  color: #f7c548;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 55px;
+}
+
+.calc__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #a98743;
+  grid-gap: 2px;
+  width: 350px;
+  margin: auto;
+  border: 3px solid #255957;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.screen {
+  min-height: 50px;
+  background-color: #ccc6ac;
+  grid-column: 1/5;
+  margin-bottom: 4px;
+  border: #255957 2px solid;
+  border-radius: 4px;
+  font-family: "Orbitron", sans-serif;
+  color: #255957;
+  font-size: 38px;
+  overflow: hidden;
+}
+
+.screen__value {
+  background-color: #ccc6ac;
+  margin: 10px 4px 0 0;
+  text-align: right;
+}
+
+.btn {
+  background-color: #eeebd3;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 30px;
+  color: #255957;
+}
+
+.btn:hover {
+  background-color: #d6c094;
+  color: #184241;
+  cursor: pointer;
+  border: 1px solid #eeebd3;
+}
+
+.btn__zero {
+  grid-column: 1/3;
+}
+
+.btn__add {
+  grid-row: 3/5;
+  grid-column: 4/5;
+}
+
+.btn__equal {
+  grid-row: 5/7;
+  grid-column: 4/5;
+}
