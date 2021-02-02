@@ -19,17 +19,22 @@ function divide(a, b) {
   return a / b;
 }
 
-function appendNumber(number) {
-  screenValue += number;
-  document.querySelector(".screen__value").innerHTML = screenValue;
-}
-
+//when a numbered button is clicked, it will run appendNumber() with its text content as the parameter.
 buttonNumber.forEach(function (button) {
   button.addEventListener("click", function () {
     appendNumber(button.textContent);
   });
 });
 
+// the function takes the text content and makes it equal the screenValue variable.
+// It then displays the variable in the html element with class ".screen__value"
+function appendNumber(number) {
+  screenValue += number;
+  document.querySelector(".screen__value").innerHTML = screenValue;
+}
+
+// when the CE is clicked, it will clear out the value in the screenValue variable.
+// It will also clear out the value display on the screen browser.
 buttonClear.addEventListener("click", () => {
   screenValue = "";
   document.querySelector(".screen__value").innerHTML = screenValue;
