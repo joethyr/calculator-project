@@ -29,6 +29,10 @@ buttonNumber.forEach(function (button) {
 // the function takes the text content and makes it equal the screenValue variable.
 // It then displays the variable in the html element with class ".screen__value"
 function appendNumber(number) {
+  if (screenValue.length > 20) {
+    alert("the number value is too high!");
+    return;
+  }
   screenValue += number;
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
