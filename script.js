@@ -1,4 +1,5 @@
 const buttonNumber = document.querySelectorAll(".btn__number");
+const buttonClear = document.querySelector(".btn__clear");
 
 let screenValue = "";
 
@@ -27,4 +28,9 @@ buttonNumber.forEach(function (button) {
   button.addEventListener("click", function () {
     appendNumber(button.textContent);
   });
+});
+
+buttonClear.addEventListener("click", () => {
+  screenValue = "";
+  document.querySelector(".screen__value").innerHTML = screenValue;
 });
