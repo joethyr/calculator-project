@@ -3,6 +3,24 @@
   text-align: center;
 }
 
+h1 {
+  color: #f7c548;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 50px;
+}
+
+.calc__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #a98743;
+  grid-gap: 2px;
+  width: 300px;
+  margin: auto;
+  border: 3px solid #255957;
+  border-radius: 8px;
+  padding: 8px;
+}
+
 @media only screen and (min-width: 768px) {
   .calc__container {
     width: 400px;
@@ -11,41 +29,23 @@
   }
 }
 
-h1 {
-  color: #f7c548;
-  font-family: "Yusei Magic", sans-serif;
-  font-size: 55px;
-}
-
-.calc__container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background-color: #a98743;
-  grid-gap: 2px;
-  width: 350px;
-  margin: auto;
-  border: 3px solid #255957;
-  border-radius: 8px;
-  padding: 8px;
-}
-
 .screen {
-  min-height: 50px;
+  min-height: 60px;
   background-color: #ccc6ac;
   grid-column: 1/5;
   margin-bottom: 4px;
   border: #255957 2px solid;
-  border-radius: 4px;
+  border-radius: 3px;
   font-family: "Orbitron", sans-serif;
   color: #255957;
   font-size: 38px;
-  overflow: hidden;
 }
 
 .screen__value {
   background-color: #ccc6ac;
   margin: 10px 4px 0 0;
   text-align: right;
+  word-wrap: break-word;
 }
 
 .btn {
