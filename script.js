@@ -1,5 +1,6 @@
 const buttonNumber = document.querySelectorAll(".btn__number");
 const buttonClear = document.querySelector(".btn__clear");
+const buttonDecimal = document.querySelector(".btn__decimal");
 
 let screenValue = "";
 
@@ -45,4 +46,11 @@ function appendNumber(number) {
 buttonClear.addEventListener("click", () => {
   screenValue = "";
   document.querySelector(".screen__value").innerHTML = screenValue;
+});
+
+// when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
+buttonDecimal.addEventListener("click", () => {
+  if (screenValue.includes(".") !== true) {
+    appendNumber(buttonDecimal.textContent);
+  }
 });
