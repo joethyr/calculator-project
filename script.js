@@ -33,6 +33,9 @@ function appendNumber(number) {
     alert("the number value is too high!");
     return;
   }
+  if (number == 0 && screenValue.length == 0) {
+    return;
+  }
   screenValue += number;
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
