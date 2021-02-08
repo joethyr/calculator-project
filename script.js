@@ -1,8 +1,12 @@
 const buttonNumber = document.querySelectorAll(".btn__number");
 const buttonClear = document.querySelector(".btn__clear");
 const buttonDecimal = document.querySelector(".btn__decimal");
+const buttonOperator = document.querySelectorAll(".btn__operator");
+const equalsButton = document.querySelector(".btn__equal");
 
 let screenValue = "";
+let operatorClicked = false;
+let currentOperation = null;
 
 function add(a, b) {
   return a + b;
@@ -34,9 +38,10 @@ function appendNumber(number) {
     alert("the number value is too high!");
     return;
   }
-  if (number == 0 && screenValue.length == 0) {
+  if (number == 0 && screenValue.length == 1) {
     return;
   }
+  operatorClicked = false;
   screenValue += number;
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
@@ -44,13 +49,90 @@ function appendNumber(number) {
 // when the CE is clicked, it will clear out the value in the screenValue variable.
 // It will also clear out the value display on the screen browser.
 buttonClear.addEventListener("click", () => {
+  clear();
+});
+
+function clearEntry() {
   screenValue = "";
   document.querySelector(".screen__value").innerHTML = screenValue;
-});
+}
+
+function clear() {
+  screenValue = "";
+  firstOperand = "";
+  secondOperand = "";
+  currentOperation = null;
+  document.querySelector(".screen__value").innerHTML = screenValue;
+}
 
 // when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
 buttonDecimal.addEventListener("click", () => {
   if (screenValue.includes(".") !== true) {
     appendNumber(buttonDecimal.textContent);
   }
+});
+
+buttonOperator.forEach((button) =>
+  button.addEventListener("click", () => setOperation(button.textContent))
+);
+
+function setOperation(operator) {
+  if (currentOperation !== null) {
+    evaluate();
+    currentOperation = operator;
+    return;
+  }
+  firstOperand = parseFloat(screenValue);
+  currentOperation = operator;
+  if (screenValue === "0" && currentOperation === "/") {
+    alert("division by zero is undefined.");
+    clear();
+    return;
+  }
+  operatorClicked = true;
+  screenValue = "";
+}
+function evaluate() {
+  if (currentOperation === null || operatorClicked == true) return;
+  if (screenValue === "0" && currentOperation === "/") {
+    alert("division by zero is undefined.");
+    clear();
+    return;
+  }
+  secondOperand = parseFloat(screenValue);
+  operate(currentOperation, firstOperand, secondOperand);
+}
+
+function operateFull(operation) {
+  firstOperand = operation;
+  document.querySelector(".screen__value").innerHTML = operation;
+  screenValue = "";
+  operatorClicked = true;
+}
+
+function operate(operator, a, b) {
+  if (operator === "+") {
+    add(a, b);
+    operateFull(add(a, b));
+    return;
+  }
+  if (operator === "-") {
+    subtract(a, b);
+    operateFull(subtract(a, b));
+    return;
+  }
+  if (operator === "*") {
+    multiply(a, b);
+    operateFull(multiply(a, b));
+    return;
+  }
+  if (operator === "/") {
+    divide(a, b);
+    operateFull(divide(a, b));
+    return;
+  }
+}
+
+equalsButton.addEventListener("click", () => {
+  evaluate();
 });
