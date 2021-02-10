@@ -103,6 +103,10 @@ function evaluate() {
   operate(currentOperation, firstOperand, secondOperand);
 }
 
+function round(x) {
+  return Math.round(x * 1000) / 1000;
+}
+
 function operateFull(operation) {
   firstOperand = operation;
   document.querySelector(".screen__value").innerHTML = operation;
@@ -113,22 +117,22 @@ function operateFull(operation) {
 function operate(operator, a, b) {
   if (operator === "+") {
     add(a, b);
-    operateFull(add(a, b));
+    operateFull(round(add(a, b)));
     return;
   }
   if (operator === "-") {
     subtract(a, b);
-    operateFull(subtract(a, b));
+    operateFull(round(subtract(a, b)));
     return;
   }
   if (operator === "*") {
     multiply(a, b);
-    operateFull(multiply(a, b));
+    operateFull(round(multiply(a, b)));
     return;
   }
   if (operator === "/") {
     divide(a, b);
-    operateFull(divide(a, b));
+    operateFull(round(divide(a, b)));
     return;
   }
 }
