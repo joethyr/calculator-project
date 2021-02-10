@@ -67,6 +67,9 @@ function clear() {
 }
 
 buttonDelete.addEventListener("click", () => {
+  if (screenValue === "") {
+    return;
+  }
   let newScreenValue = Array.from(screenValue);
   newScreenValue.pop();
   screenValue = newScreenValue.join("");
