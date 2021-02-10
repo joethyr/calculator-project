@@ -3,6 +3,7 @@ const buttonClear = document.querySelector(".btn__clear");
 const buttonDecimal = document.querySelector(".btn__decimal");
 const buttonOperator = document.querySelectorAll(".btn__operator");
 const equalsButton = document.querySelector(".btn__equal");
+const buttonDelete = document.querySelector(".btn__delete");
 
 let screenValue = "";
 let operatorClicked = false;
@@ -38,7 +39,7 @@ function appendNumber(number) {
     alert("the number value is too high!");
     return;
   }
-  if (number == 0 && screenValue.length == 1) {
+  if (number == 0 && screenValue.length == 0) {
     return;
   }
   operatorClicked = false;
@@ -64,6 +65,13 @@ function clear() {
   currentOperation = null;
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
+
+buttonDelete.addEventListener("click", () => {
+  let newScreenValue = Array.from(screenValue);
+  newScreenValue.pop();
+  screenValue = newScreenValue.join("");
+  document.querySelector(".screen__value").innerHTML = screenValue;
+});
 
 // when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
 buttonDecimal.addEventListener("click", () => {
