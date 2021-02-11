@@ -53,6 +53,7 @@ h1 {
   font-family: "Yusei Magic", sans-serif;
   font-size: 30px;
   color: #255957;
+  outline: none;
 }
 
 .btn:hover {

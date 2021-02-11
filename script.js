@@ -9,6 +9,8 @@ let screenValue = "";
 let operatorClicked = false;
 let currentOperation = null;
 
+window.addEventListener("keydown", keyPress);
+
 function add(a, b) {
   return a + b;
 }
@@ -47,6 +49,20 @@ function appendNumber(number) {
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
 
+buttonDelete.addEventListener("click", function () {
+  deleteNumber();
+});
+
+function deleteNumber() {
+  if (screenValue === "") {
+    return;
+  }
+  let newScreenValue = Array.from(screenValue);
+  newScreenValue.pop();
+  screenValue = newScreenValue.join("");
+  document.querySelector(".screen__value").innerHTML = screenValue;
+}
+
 // when the CE is clicked, it will clear out the value in the screenValue variable.
 // It will also clear out the value display on the screen browser.
 buttonClear.addEventListener("click", () => {
@@ -66,22 +82,16 @@ function clear() {
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
 
-buttonDelete.addEventListener("click", () => {
-  if (screenValue === "") {
-    return;
-  }
-  let newScreenValue = Array.from(screenValue);
-  newScreenValue.pop();
-  screenValue = newScreenValue.join("");
-  document.querySelector(".screen__value").innerHTML = screenValue;
+// when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
+buttonDecimal.addEventListener("click", function () {
+  decimalButton();
 });
 
-// when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
-buttonDecimal.addEventListener("click", () => {
+function decimalButton() {
   if (screenValue.includes(".") !== true) {
     appendNumber(buttonDecimal.textContent);
   }
-});
+}
 
 buttonOperator.forEach((button) =>
   button.addEventListener("click", () => setOperation(button.textContent))
@@ -116,6 +126,15 @@ function evaluate() {
 
 function round(x) {
   return Math.round(x * 1000) / 1000;
+}
+function keyPress(e) {
+  if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+  if (e.key === ".") decimalButton();
+  if (e.key === "=" || e.key === "Enter") evaluate();
+  if (e.key === "Backspace") deleteNumber();
+  if (e.key === "Escape") clear();
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+    setOperation(e.key);
 }
 
 function operateFull(operation) {
