@@ -27,15 +27,12 @@ function divide(a, b) {
   return a / b;
 }
 
-//when a numbered button is clicked, it will run appendNumber() with its text content as the parameter.
 buttonNumber.forEach(function (button) {
   button.addEventListener("click", function () {
     appendNumber(button.textContent);
   });
 });
 
-// the function takes the text content and makes it equal the screenValue variable.
-// It then displays the variable in the html element with class ".screen__value"
 function appendNumber(number) {
   if (screenValue.length > 20) {
     alert("the number value is too high!");
@@ -63,8 +60,6 @@ function deleteNumber() {
   document.querySelector(".screen__value").innerHTML = screenValue;
 }
 
-// when the CE is clicked, it will clear out the value in the screenValue variable.
-// It will also clear out the value display on the screen browser.
 buttonClear.addEventListener("click", () => {
   clear();
 });
@@ -83,7 +78,7 @@ function clear() {
 }
 
 // when the decimal button is clicked and there is no "." value found in screenValue variable, append it to the variable.
-buttonDecimal.addEventListener("click", function () {
+buttonDecimal.addEventListener("click", () => {
   decimalButton();
 });
 
@@ -124,19 +119,6 @@ function evaluate() {
   operate(currentOperation, firstOperand, secondOperand);
 }
 
-function round(x) {
-  return Math.round(x * 1000) / 1000;
-}
-function keyPress(e) {
-  if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
-  if (e.key === ".") decimalButton();
-  if (e.key === "=" || e.key === "Enter") evaluate();
-  if (e.key === "Backspace") deleteNumber();
-  if (e.key === "Escape") clear();
-  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
-    setOperation(e.key);
-}
-
 function operateFull(operation) {
   firstOperand = operation;
   document.querySelector(".screen__value").innerHTML = operation;
@@ -170,3 +152,16 @@ function operate(operator, a, b) {
 equalsButton.addEventListener("click", () => {
   evaluate();
 });
+
+function round(x) {
+  return Math.round(x * 1000) / 1000;
+}
+function keyPress(e) {
+  if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+  if (e.key === ".") decimalButton();
+  if (e.key === "=" || e.key === "Enter") evaluate();
+  if (e.key === "Backspace") deleteNumber();
+  if (e.key === "Escape") clear();
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+    setOperation(e.key);
+}
